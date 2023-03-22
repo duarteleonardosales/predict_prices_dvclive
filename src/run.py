@@ -8,10 +8,11 @@ from dvclive import Live
 
 data = pd.read_csv('data/housing.csv')
 data = data.values
-
+TEST_SIZE = 0.35
+SEED = 20
 X, y = data[:, :-1], data[:, -1]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=TEST_SIZE, random_state=SEED)
 
 # define model
 model = XGBRegressor()
@@ -25,5 +26,7 @@ r2 = r2_score(y_test, y_pred)
 corr_pearson = np.corrcoef(y_test, y_pred)
 
 with Live(save_dvc_exp=True) as live:
+    live.log_param('test_size', TEST_SIZE)
+    live.log_param('seed', SEED)
     live.log_metric("val/r2_score", r2)
     live.log_metric("val/r", corr_pearson[0][1])
