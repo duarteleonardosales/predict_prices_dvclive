@@ -1,16 +1,17 @@
 import numpy as np
 import pandas as pd
-from dvclive import Live
 from sklearn.metrics import f1_score, r2_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
+
+from dvclive import Live
 
 data = pd.read_csv('data/housing.csv')
 data = data.values
 
 X, y = data[:, :-1], data[:, -1]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 # define model
 model = XGBRegressor()
