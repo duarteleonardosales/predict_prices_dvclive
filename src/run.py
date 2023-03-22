@@ -8,8 +8,8 @@ from dvclive import Live
 
 data = pd.read_csv('data/housing.csv')
 data = data.values
-TEST_SIZE = 0.15
-SEED = 42
+TEST_SIZE = 0.25
+SEED = 50
 X, y = data[:, :-1], data[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=TEST_SIZE, random_state=SEED)
