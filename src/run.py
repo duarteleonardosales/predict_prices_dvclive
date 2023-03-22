@@ -8,7 +8,7 @@ from dvclive import Live
 
 data = pd.read_csv('data/housing.csv')
 data = data.values
-TEST_SIZE = 0.25
+TEST_SIZE = 0.28
 SEED = 12
 X, y = data[:, :-1], data[:, -1]
 
